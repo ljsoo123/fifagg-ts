@@ -3,9 +3,11 @@ import React, { useEffect, useState } from "react";
 import * as S from "./styles";
 import axios from "axios";
 import Match from "../Match/Match";
+
 const Player = (prop: { player: any }) => {
-  const [matchData, setMatchData] = useState<any>([]);
+  const [matchData, setMatchData] = useState<any[]>([]);
   const { player } = prop;
+
   useEffect(() => {
     axios
       .get(
@@ -18,7 +20,7 @@ const Player = (prop: { player: any }) => {
         }
       )
       .then((res) => {
-        setMatchData([...matchData, res.data]);
+        setMatchData(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -29,7 +31,7 @@ const Player = (prop: { player: any }) => {
         <S.Nickname>{player.nickname}</S.Nickname>
         <S.Level>Lv.{player.level}</S.Level>
       </S.Info>
-      {matchData && <Match matchData={matchData} player={player} />}
+      {matchData.length > 0 && <Match matchData={matchData} player={player} />}
     </S.Main>
   );
 };
