@@ -10,10 +10,12 @@ const Home = (prop: { history: any }) => {
   return (
     <S.Main>
       <S.InputDiv>
-        <input ref={inputRef} />
+        <input ref={inputRef} placeholder={"닉네임을 입력하세요"} />
       </S.InputDiv>
       <S.BtnDiv>
-        <button onClick={onBtnClick}>검색</button>
+        <button onClick={onBtnClick} id="button">
+          검색
+        </button>
       </S.BtnDiv>
     </S.Main>
   );
